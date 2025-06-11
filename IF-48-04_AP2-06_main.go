@@ -255,19 +255,17 @@ func sortGaji(B *betInt) {
 }
 
 func sortKecocokan(B *betInt) {
-	var i, idx, pass int
+	var i, j int
 	var temp karir
 
-	for pass = 0; pass < 4; pass++ {
-		idx = pass
-		for i = pass + 1; i < 5; i++ {
-			if (*B)[i].kecocokan > (*B)[idx].kecocokan {
-				idx = i
-			}
+	for i = 1; i < 5; i++ {
+		temp = (*B)[i]
+		j = i - 1
+		for j >= 0 && (*B)[j].kecocokan < temp.kecocokan {
+			(*B)[j+1] = (*B)[j]
+			j--
 		}
-		temp = (*B)[pass]
-		(*B)[pass] = (*B)[idx]
-		(*B)[idx] = temp
+		(*B)[j+1] = temp
 	}
 }
 
